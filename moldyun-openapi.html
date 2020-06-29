@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+      <html>
+      <head>
+      <title>moldyun</title>
+      <meta charset="utf-8" />
+      <style>@charset "UTF-8";
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 设置滚动条的样式 */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* 外层轨道 */
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset006pxrgba(255, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.1);
+}
+
+/* 滚动条滑块 */
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: inset006pxrgba(0, 0, 0, 0.5);
+}
+
+::-webkit-scrollbar-thumb:window-inactive {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimSun, sans-serif;
+  font-size: 13px;
+  line-height: 25px;
+  color: #393838;
+  position: relative;
+}
+
+table {
+  margin: 10px 0 15px 0;
+  border-collapse: collapse;
+}
+
+td,
+th {
+  border: 1px solid #ddd;
+  padding: 3px 10px;
+}
+
+th {
+  padding: 5px 10px;
+}
+
+a, a:link, a:visited {
+  color: #34495e;
+  text-decoration: none;
+}
+
+a:hover, a:focus {
+  color: #59d69d;
+  text-decoration: none;
+}
+
+a img {
+  border: none;
+}
+
+p {
+  padding-left: 10px;
+  margin-bottom: 9px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #404040;
+  line-height: 36px;
+}
+
+h1 {
+  color: #2c3e50;
+  font-weight: 600;
+  margin-bottom: 16px;
+  font-size: 32px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #ddd;
+  line-height: 50px;
+}
+
+h2 {
+  font-size: 28px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+h3 {
+  clear: both;
+  font-weight: 400;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-left: 3px solid #59d69d;
+  padding-left: 8px;
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  font-size: 13px;
+}
+
+hr {
+  margin: 0 0 19px;
+  border: 0;
+  border-bottom: 1px solid #ccc;
+}
+
+blockquote {
+  padding: 13px 13px 21px 15px;
+  margin-bottom: 18px;
+  font-family: georgia, serif;
+  font-style: italic;
+}
+
+blockquote:before {
+  font-size: 40px;
+  margin-left: -10px;
+  font-family: georgia, serif;
+  color: #eee;
+}
+
+blockquote p {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 18px;
+  margin-bottom: 0;
+  font-style: italic;
+}
+
+code,
+pre {
+  font-family: Monaco, Andale Mono, Courier New, monospace;
+}
+
+code {
+  background-color: #fee9cc;
+  color: rgba(0, 0, 0, 0.75);
+  padding: 1px 3px;
+  font-size: 12px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+pre {
+  display: block;
+  padding: 14px;
+  margin: 0 0 18px;
+  line-height: 16px;
+  font-size: 11px;
+  border: 1px solid #d9d9d9;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  background: #f6f6f6;
+}
+
+pre code {
+  background-color: #f6f6f6;
+  color: #737373;
+  font-size: 11px;
+  padding: 0;
+}
+
+sup {
+  font-size: 0.83em;
+  vertical-align: super;
+  line-height: 0;
+}
+
+* {
+  -webkit-print-color-adjust: exact;
+}
+
+@media print {
+  body,
+  code,
+  pre code,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: black;
+  }
+
+  table,
+  pre {
+    page-break-inside: avoid;
+  }
+}
+html,
+body {
+  height: 100%;
+}
+
+.table-of-contents {
+  position: fixed;
+  top: 61px;
+  left: 0;
+  bottom: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  width: 260px;
+}
+
+.table-of-contents > ul > li > a {
+  font-size: 20px;
+  margin-bottom: 16px;
+  margin-top: 16px;
+}
+
+.table-of-contents ul {
+  overflow: auto;
+  margin: 0px;
+  height: 100%;
+  padding: 0px 0px;
+  box-sizing: border-box;
+  list-style-type: none;
+}
+
+.table-of-contents ul li {
+  padding-left: 20px;
+}
+
+.table-of-contents a {
+  padding: 2px 0px;
+  display: block;
+  text-decoration: none;
+}
+
+.content-right {
+  max-width: 700px;
+  margin-left: 290px;
+  padding-left: 70px;
+  flex-grow: 1;
+}
+.content-right h2:target {
+  padding-top: 80px;
+}
+
+body > p {
+  margin-left: 30px;
+}
+
+body > table {
+  margin-left: 30px;
+}
+
+body > pre {
+  margin-left: 30px;
+}
+
+.curProject {
+  position: fixed;
+  top: 20px;
+  font-size: 25px;
+  color: black;
+  margin-left: -240px;
+  width: 240px;
+  padding: 5px;
+  line-height: 25px;
+  box-sizing: border-box;
+}
+
+.g-doc {
+  margin-top: 56px;
+  padding-top: 24px;
+  display: flex;
+}
+
+.curproject-name {
+  font-size: 42px;
+}
+
+.m-header {
+  background: #32363a;
+  height: 56px;
+  line-height: 56px;
+  padding-left: 60px;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  z-index: 9;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+.m-header .title {
+  font-size: 22px;
+  color: #fff;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+  margin-left: 16px;
+  padding: 0;
+  line-height: 56px;
+  border: none;
+}
+.m-header .nav {
+  color: #fff;
+  font-size: 16px;
+  position: absolute;
+  right: 32px;
+  top: 0;
+}
+.m-header .nav a {
+  color: #fff;
+  margin-left: 16px;
+  padding: 8px;
+  transition: color .2s;
+}
+.m-header .nav a:hover {
+  color: #59d69d;
+}
+
+.m-footer {
+  border-top: 1px solid #ddd;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+/*# sourceMappingURL=defaultTheme.css.map */
+</style>
+      </head>
+      <body>
+        <div class="m-header">
+          <a href="#"><h1 class="title">接口文档</h1></a>
+          <div class="nav">
+            <a href="http://www.moldyun.com">模云</a>
+          </div>
+        </div>
+        <div class="g-doc">
+          <div class="table-of-contents"><ul><li><a href="#base">BASE</a><ul><li><a href="#u7528u6237u767bu5f550a3ca20id3du7528u6237u767bu5f553e203ca3e">用户登录
+<a id=用户登录> </a></a></li></ul></li><li><a href="#cam">CAM</a><ul><li><a href="#camu4efbu52a1u53c2u6570u4e0au4f200a3ca20id3dcamu4efbu52a1u53c2u6570u4e0au4f203e203ca3e">CAM任务参数上传
+<a id=CAM任务参数上传> </a></a></li><li><a href="#u83b7u53d6camu4efbu52a1u5217u88680a3ca20id3du83b7u53d6camu4efbu52a1u5217u88683e203ca3e">获取CAM任务列表
+<a id=获取CAM任务列表> </a></a></li><li><a href="#u83b7u53d6u7a0bu5f0fu7c7bu578b0a3ca20id3du83b7u53d6u7a0bu5f0fu7c7bu578b3e203ca3e">获取程式类型
+<a id=获取程式类型> </a></a></li><li><a href="#u83b7u53d6u9644u4ef6u6e05u53550a3ca20id3du83b7u53d6u9644u4ef6u6e05u53553e203ca3e">获取附件清单
+<a id=获取附件清单> </a></a></li></ul></li><li><a href="#gateway">Gateway</a><ul><li><a href="#u4e0bu8f7du6587u4ef6u63a5u53e30a3ca20id3du4e0bu8f7du6587u4ef6u63a5u53e33e203ca3e">下载文件接口
+<a id=下载文件接口> </a></a></li><li><a href="#u6821u9a8cu79dfu6237id0a3ca20id3du6821u9a8cu79dfu6237id3e203ca3e">校验租户id
+<a id=校验租户id> </a></a></li><li><a href="#u901au7528u6587u4ef6u4e0au4f200a3ca20id3du901au7528u6587u4ef6u4e0au4f203e203ca3e">通用文件上传
+<a id=通用文件上传> </a></a></li></ul></li></ul></div>
+          <div id="right" class="content-right">
+           <h1 class="curproject-name"> moldyun </h1> 
+<h1 id="base">BASE</h1>
+<p></p>
+<h2 id="u7528u6237u767bu5f550a3ca20id3du7528u6237u767bu5f553e203ca3e">用户登录
+<a id=用户登录> </a></h2>
+<p></p>
+<h3 id="">基本信息</h3>
+<p><strong>Path：</strong> /front/upms/user/login</p>
+<p><strong>Method：</strong> POST</p>
+<p><strong>接口描述：</strong></p>
+<p>HTTP/1.1 200<br>
+Date: Sun, 28 Jun 2020 10:37:58 GMT<br>
+Content-Type: application/json;charset=UTF-8<br>
+Transfer-Encoding: chunked<br>
+Connection: keep-alive<br>
+Access-Control-Allow-Origin: *<br>
+Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS<br>
+Access-Control-Max-Age: 3600<br>
+Access-Control-Allow-Headers: x-requested-with, Authorization, Content-Type<br>
+Set-Cookie: <strong>JSESSIONID=<strong><strong>4561d582-77d2-4ca0-96a2-8c8b1674dd8d</strong></strong>; Path=/; HttpOnly</strong></p>
+<h4>其他接口访问时，需要携带cookie</h4>
+<h3 id="-2">请求参数</h3>
+<p><strong>Headers</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>参数值</th>
+<th>是否必须</th>
+<th>示例</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Content-Type</td>
+<td>application/json</td>
+<td>是</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Body</strong></p>
+<table>
+  <thead class="ant-table-thead">
+    <tr>
+      <th key=name>名称</th><th key=type>类型</th><th key=required>是否必须</th><th key=default>默认值</th><th key=desc>备注</th><th key=sub>其他信息</th>
+    </tr>
+  </thead><tbody className="ant-table-tbody"><tr key=0-0><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> password</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3>密码</td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5><p key=5><span style="font-weight: '700'">mock: </span><span>test</span></p></td></tr><tr key=0-1><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> phoneNum</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3>用户名</td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5><p key=5><span style="font-weight: '700'">mock: </span><span>test</span></p></td></tr>
+               </tbody>
+              </table>
+<h3 id="-3">返回数据</h3>
+<table>
+  <thead class="ant-table-thead">
+    <tr>
+      <th key=name>名称</th><th key=type>类型</th><th key=required>是否必须</th><th key=default>默认值</th><th key=desc>备注</th><th key=sub>其他信息</th>
+    </tr>
+  </thead><tbody className="ant-table-tbody"><tr key=0-0><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> code</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">1 成功 其他失败</span></td><td key=5></td></tr><tr key=0-1><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> message</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">错误消息</span></td><td key=5></td></tr><tr key=0-2><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> data</span></td><td key=1><span>object</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">返回数据</span></td><td key=5></td></tr><tr key=0-2-0><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> userData</span></td><td key=1><span>object</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">用户信息</span></td><td key=5></td></tr><tr key=0-2-0-0><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> userId</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">用户Id</span></td><td key=5></td></tr><tr key=0-2-0-1><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> tenantId</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">租户Id</span></td><td key=5></td></tr><tr key=0-2-0-2><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> realName</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">姓名</span></td><td key=5></td></tr><tr key=0-2-0-3><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> userName</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">用户名</span></td><td key=5></td></tr><tr key=0-2-0-4><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> status</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">状态</span></td><td key=5></td></tr><tr key=0-2-0-5><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> type</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-0-6><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> phoneNum</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-0-7><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> email</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-0-8><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> spellName</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-0-9><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> englishName</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-0-10><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> sex</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-0-11><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> workPhone</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-0-12><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> employeeStatus</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-0-13><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> wechatNum</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-0-14><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> workNum</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-0-15><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> emailValid</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-0-16><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> intro</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-0-17><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> logo</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-0-18><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> workRate</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-0-19><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> worklogFlag</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-0-20><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> currentGateway</span></td><td key=1><span>object</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">当前网关</span></td><td key=5></td></tr><tr key=0-2-0-20-0><td key=0><span style="padding-left: 60px"><span style="color: #8c8a8a">├─</span> serverAppId</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-0-20-1><td key=0><span style="padding-left: 60px"><span style="color: #8c8a8a">├─</span> gatewayIp</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">当前网关Ip</span></td><td key=5></td></tr><tr key=0-2-0-20-2><td key=0><span style="padding-left: 60px"><span style="color: #8c8a8a">├─</span> gatewayPort</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">当前网关端口</span></td><td key=5></td></tr><tr key=0-2-0-20-3><td key=0><span style="padding-left: 60px"><span style="color: #8c8a8a">├─</span> serverAppUuid</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-0-20-4><td key=0><span style="padding-left: 60px"><span style="color: #8c8a8a">├─</span> factoryId</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">工厂Id</span></td><td key=5></td></tr><tr key=0-2-0-20-5><td key=0><span style="padding-left: 60px"><span style="color: #8c8a8a">├─</span> factoryName</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">工厂名称</span></td><td key=5></td></tr><tr key=0-2-0-20-6><td key=0><span style="padding-left: 60px"><span style="color: #8c8a8a">├─</span> gatWayValidFlag</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">是否可用</span></td><td key=5></td></tr><tr key=0-2-0-21><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> userPageSize</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-0-22><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> barcode</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-1><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> gatewayServerList</span></td><td key=1><span>object []</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">网关列表</span></td><td key=5><p key=3><span style="font-weight: '700'">item 类型: </span><span>object</span></p></td></tr><tr key=0-2-1-0><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> serverAppId</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-1-1><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> gatewayIp</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">网关Ip</span></td><td key=5></td></tr><tr key=0-2-1-2><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> gatewayPort</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">网关端口</span></td><td key=5></td></tr><tr key=0-2-1-3><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> serverAppUuid</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-1-4><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> factoryId</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">工厂Id</span></td><td key=5></td></tr><tr key=0-2-1-5><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> factoryName</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">工厂名称</span></td><td key=5></td></tr><tr key=0-2-1-6><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> gatWayValidFlag</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">是否可用</span></td><td key=5></td></tr><tr key=0-2-2><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> mdbId</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-3><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> gatewayIp</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">网关Ip</span></td><td key=5></td></tr><tr key=0-2-4><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> gatewayPort</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">网关端口</span></td><td key=5></td></tr>
+               </tbody>
+              </table>
+<h1 id="cam">CAM</h1>
+<p></p>
+<h2 id="camu4efbu52a1u53c2u6570u4e0au4f200a3ca20id3dcamu4efbu52a1u53c2u6570u4e0au4f203e203ca3e">CAM任务参数上传
+<a id=CAM任务参数上传> </a></h2>
+<p></p>
+<h3 id="-4">基本信息</h3>
+<p><strong>Path：</strong> /front/cam/api/v1/camTaskParameterUpload.do</p>
+<p><strong>Method：</strong> POST</p>
+<p><strong>接口描述：</strong></p>
+<h3 id="-5">请求参数</h3>
+<p><strong>Headers</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>参数值</th>
+<th>是否必须</th>
+<th>示例</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Content-Type</td>
+<td>application/json</td>
+<td>是</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Body</strong></p>
+<table>
+  <thead class="ant-table-thead">
+    <tr>
+      <th key=name>名称</th><th key=type>类型</th><th key=required>是否必须</th><th key=default>默认值</th><th key=desc>备注</th><th key=sub>其他信息</th>
+    </tr>
+  </thead><tbody className="ant-table-tbody"><tr key=0-0><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> camGroups</span></td><td key=1><span>object []</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">CAM程式上传</span></td><td key=5><p key=3><span style="font-weight: '700'">item 类型: </span><span>object</span></p></td></tr><tr key=0-0-0><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> camPrograms</span></td><td key=1><span>object []</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">CAM程式</span></td><td key=5><p key=3><span style="font-weight: '700'">item 类型: </span><span>object</span></p></td></tr><tr key=0-0-0-0><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> camUploadId</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">传统工段手动上传CAM相关文件记录ID</span></td><td key=5></td></tr><tr key=0-0-0-1><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> cncOperations</span></td><td key=1><span>object []</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">CNC程序详细信息</span></td><td key=5><p key=3><span style="font-weight: '700'">item 类型: </span><span>object</span></p></td></tr><tr key=0-0-0-1-0><td key=0><span style="padding-left: 60px"><span style="color: #8c8a8a">├─</span> cutDepth</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">加工深度,相对深度</span></td><td key=5></td></tr><tr key=0-0-0-1-1><td key=0><span style="padding-left: 60px"><span style="color: #8c8a8a">├─</span> feedRate</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">进给率</span></td><td key=5></td></tr><tr key=0-0-0-1-2><td key=0><span style="padding-left: 60px"><span style="color: #8c8a8a">├─</span> inTol</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">内公差</span></td><td key=5></td></tr><tr key=0-0-0-1-3><td key=0><span style="padding-left: 60px"><span style="color: #8c8a8a">├─</span> lowestPoint</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">最低点,加工深度,绝对深度</span></td><td key=5></td></tr><tr key=0-0-0-1-4><td key=0><span style="padding-left: 60px"><span style="color: #8c8a8a">├─</span> mcTime</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">切销时间</span></td><td key=5></td></tr><tr key=0-0-0-1-5><td key=0><span style="padding-left: 60px"><span style="color: #8c8a8a">├─</span> mcType</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">切削类型</span></td><td key=5></td></tr><tr key=0-0-0-1-6><td key=0><span style="padding-left: 60px"><span style="color: #8c8a8a">├─</span> outTol</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">外公差</span></td><td key=5></td></tr><tr key=0-0-0-1-7><td key=0><span style="padding-left: 60px"><span style="color: #8c8a8a">├─</span> partId</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">工件ID</span></td><td key=5></td></tr><tr key=0-0-0-1-8><td key=0><span style="padding-left: 60px"><span style="color: #8c8a8a">├─</span> pathName</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">操作名字</span></td><td key=5></td></tr><tr key=0-0-0-1-9><td key=0><span style="padding-left: 60px"><span style="color: #8c8a8a">├─</span> pathPicName</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">路径图片</span></td><td key=5></td></tr><tr key=0-0-0-1-10><td key=0><span style="padding-left: 60px"><span style="color: #8c8a8a">├─</span> perCutDepth</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">每层切削深度</span></td><td key=5></td></tr><tr key=0-0-0-1-11><td key=0><span style="padding-left: 60px"><span style="color: #8c8a8a">├─</span> safeValue</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">安全高度</span></td><td key=5></td></tr><tr key=0-0-0-1-12><td key=0><span style="padding-left: 60px"><span style="color: #8c8a8a">├─</span> spindlespeed</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">转速</span></td><td key=5></td></tr><tr key=0-0-0-1-13><td key=0><span style="padding-left: 60px"><span style="color: #8c8a8a">├─</span> stepDepth</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">步进深度</span></td><td key=5></td></tr><tr key=0-0-0-1-14><td key=0><span style="padding-left: 60px"><span style="color: #8c8a8a">├─</span> stepoverType</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">步進模式</span></td><td key=5></td></tr><tr key=0-0-0-1-15><td key=0><span style="padding-left: 60px"><span style="color: #8c8a8a">├─</span> xyStepover</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">XY步进量</span></td><td key=5></td></tr><tr key=0-0-0-1-16><td key=0><span style="padding-left: 60px"><span style="color: #8c8a8a">├─</span> xySteptype</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">XY步进模式</span></td><td key=5></td></tr><tr key=0-0-0-1-17><td key=0><span style="padding-left: 60px"><span style="color: #8c8a8a">├─</span> xyStock</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">XY预留</span></td><td key=5></td></tr><tr key=0-0-0-1-18><td key=0><span style="padding-left: 60px"><span style="color: #8c8a8a">├─</span> zStock</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">Z预留</span></td><td key=5></td></tr><tr key=0-0-0-2><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> cpocketFlag</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">是否有屑标识,0: 无屑加工  1: 有屑</span></td><td key=5></td></tr><tr key=0-0-0-3><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> cutNum</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">切削数</span></td><td key=5></td></tr><tr key=0-0-0-4><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> cutTypeId</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">切削类型ID</span></td><td key=5></td></tr><tr key=0-0-0-5><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> depthMax</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">最大深度</span></td><td key=5></td></tr><tr key=0-0-0-6><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> feedMeter</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">切削米数</span></td><td key=5></td></tr><tr key=0-0-0-7><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> feedRate</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">进给率</span></td><td key=5></td></tr><tr key=0-0-0-8><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> gap</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">GAP</span></td><td key=5></td></tr><tr key=0-0-0-9><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> lToler</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">MIN公差</span></td><td key=5></td></tr><tr key=0-0-0-10><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> lowerPlane</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">下程序面高度</span></td><td key=5></td></tr><tr key=0-0-0-11><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> maxAngle</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">最大角度</span></td><td key=5></td></tr><tr key=0-0-0-12><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> mcTime</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">加工时间</span></td><td key=5></td></tr><tr key=0-0-0-13><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> mcType</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">切削类型</span></td><td key=5></td></tr><tr key=0-0-0-14><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> millTypeId</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">铣削类型ID</span></td><td key=5></td></tr><tr key=0-0-0-15><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> overFlag</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">是否是过切程序，0：普通程序，1：过切程序</span></td><td key=5></td></tr><tr key=0-0-0-16><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> overValue</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">过切值</span></td><td key=5></td></tr><tr key=0-0-0-17><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> partId</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">工件ID</span></td><td key=5></td></tr><tr key=0-0-0-18><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> prgFileName</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">文件存储的路径</span></td><td key=5></td></tr><tr key=0-0-0-19><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> prgNote</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">文件备注</span></td><td key=5></td></tr><tr key=0-0-0-20><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> prgStatus</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">文件状态</span></td><td key=5></td></tr><tr key=0-0-0-21><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> programId</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">CAM程式ID</span></td><td key=5></td></tr><tr key=0-0-0-22><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> programName</span></td><td key=1><span>string</span></td><td key=2>必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">序名,铣牙以milltap开头 非空</span></td><td key=5></td></tr><tr key=0-0-0-23><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> programNo</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">程式编号</span></td><td key=5></td></tr><tr key=0-0-0-24><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> programType</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">1=普通,2=2D,3=3D</span></td><td key=5></td></tr><tr key=0-0-0-25><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> slugHoleFlag</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">是否逃料标识</span></td><td key=5></td></tr><tr key=0-0-0-26><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> sparkType</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">放电类型</span></td><td key=5></td></tr><tr key=0-0-0-27><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> spindlespeed</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">转速</span></td><td key=5></td></tr><tr key=0-0-0-28><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> toolName</span></td><td key=1><span>string</span></td><td key=2>必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">刀名 非空</span></td><td key=5></td></tr><tr key=0-0-0-29><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> toolNo</span></td><td key=1><span>string</span></td><td key=2>必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">刀号 非空</span></td><td key=5></td></tr><tr key=0-0-0-30><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> uToler</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">MAX公差</span></td><td key=5></td></tr><tr key=0-0-0-31><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> upperPlane</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">上程序面高度</span></td><td key=5></td></tr><tr key=0-0-1><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> camSoft</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">上传工具</span></td><td key=5></td></tr><tr key=0-0-2><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> cncTools</span></td><td key=1><span>object []</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">上传的刀具信息</span></td><td key=5><p key=3><span style="font-weight: '700'">item 类型: </span><span>object</span></p></td></tr><tr key=0-0-2-0><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> firstLength</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">UG里面被cam改掉的伸出长</span></td><td key=5></td></tr><tr key=0-0-2-1><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> machineToolNo</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">机台ATC刀号</span></td><td key=5></td></tr><tr key=0-0-2-2><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> stockLength</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">长度</span></td><td key=5></td></tr><tr key=0-0-2-3><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> stockWidth</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">宽度</span></td><td key=5></td></tr><tr key=0-0-2-4><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> toolDia</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">程式中刀具直径</span></td><td key=5></td></tr><tr key=0-0-2-5><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> toolFlag</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">是否是标准刀，1=非标 ,0:标准刀</span></td><td key=5></td></tr><tr key=0-0-2-6><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> toolHolderTypeId</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">刀把类型ID</span></td><td key=5></td></tr><tr key=0-0-2-7><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> toolLength</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">伸出长</span></td><td key=5></td></tr><tr key=0-0-2-8><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> toolLevel</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">刀具粗精</span></td><td key=5></td></tr><tr key=0-0-2-9><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> toolName</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">刀具名字</span></td><td key=5></td></tr><tr key=0-0-2-10><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> toolNo</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">刀号</span></td><td key=5></td></tr><tr key=0-0-2-11><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> toolPoint</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">刀尖角-R角</span></td><td key=5></td></tr><tr key=0-0-2-12><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> toolTypeId</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">刀具类型</span></td><td key=5></td></tr><tr key=0-0-3><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> gap</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">GAP</span></td><td key=5></td></tr><tr key=0-0-4><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> hole1</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">孔1坐标(X,Y,Z)</span></td><td key=5></td></tr><tr key=0-0-5><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> hole2</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">孔2坐标(X,Y,Z)</span></td><td key=5></td></tr><tr key=0-0-6><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> inDate</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">上传时间</span></td><td key=5></td></tr><tr key=0-0-7><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> maxX</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">基准到工件最大外形X+的距离</span></td><td key=5></td></tr><tr key=0-0-8><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> maxY</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">基准到工件最大外形Y+的距离</span></td><td key=5></td></tr><tr key=0-0-9><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> maxZ</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">基准到工件最大外形Z+的距离</span></td><td key=5></td></tr><tr key=0-0-10><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> mcsMethod</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">寻中心方法</span></td><td key=5></td></tr><tr key=0-0-11><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> minX</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">基准到工件最大外形X-的距离</span></td><td key=5></td></tr><tr key=0-0-12><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> minY</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">基准到工件最大外形Y-的距离</span></td><td key=5></td></tr><tr key=0-0-13><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> minZ</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">基准到工件最大外形Z-的距离</span></td><td key=5></td></tr><tr key=0-0-14><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> modifyflag</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">ABC 二进制3位表示
+A:用于CAM上传记录上一次是否是部分上传
+       0：是，1：部分上传
+B：此次是否完整上传，0：是，1：部分上传
+C：QC是否提交，0：待QC，1：已经QC通过</span></td><td key=5></td></tr><tr key=0-0-15><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> moveX</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">X方向偏移距离，X到基准</span></td><td key=5></td></tr><tr key=0-0-16><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> moveY</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">Y方向偏移距离，Y到基准</span></td><td key=5></td></tr><tr key=0-0-17><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> moveZ</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">Z方向偏移距离，Z到基准</span></td><td key=5></td></tr><tr key=0-0-18><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> partId</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">工件ID</span></td><td key=5></td></tr><tr key=0-0-19><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> pdmZip</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">程式ZIP檔名字</span></td><td key=5></td></tr><tr key=0-0-20><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> phaseId</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">加工面ID</span></td><td key=5></td></tr><tr key=0-0-21><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> processId</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">制程ID</span></td><td key=5></td></tr><tr key=0-0-22><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> programNum</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">程式数量</span></td><td key=5></td></tr><tr key=0-0-23><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> programTypeId</span></td><td key=1><span>string</span></td><td key=2>必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">程式类型ID</span></td><td key=5></td></tr><tr key=0-0-24><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> referencAngle</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">象限基准角</span></td><td key=5></td></tr><tr key=0-0-25><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> sideX</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">X基准方法</span></td><td key=5></td></tr><tr key=0-0-26><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> sideY</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">Y基准方法</span></td><td key=5></td></tr><tr key=0-0-27><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> sideZ</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">Z基准方法</span></td><td key=5></td></tr><tr key=0-0-28><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> softVersion</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">上传工具版本</span></td><td key=5></td></tr><tr key=0-0-29><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> sparkType</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">粗精</span></td><td key=5></td></tr><tr key=0-0-30><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> stlBakFlag</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">QC的IP档有没有备份</span></td><td key=5></td></tr><tr key=0-0-31><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> stlZipFile</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">STL檔的名字</span></td><td key=5></td></tr><tr key=0-0-32><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> uploadEmployeeId</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">上传人ID</span></td><td key=5></td></tr><tr key=0-0-33><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> validFlag</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">是否有效  
+0:无效, 
+1:有效, 
+4:已删除</span></td><td key=5></td></tr><tr key=0-0-34><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> workComment</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">工单备注</span></td><td key=5></td></tr><tr key=0-0-35><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> workStatus</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">WORK状态，
+0：已经上传
+1：CAM已经提交
+2：QC：已经指派
+3：QC已经提交
+4:异常申请过了,无效</span></td><td key=5></td></tr><tr key=0-0-36><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> wpHigh</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">工件高</span></td><td key=5></td></tr><tr key=0-0-37><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> wpLength</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">工件长</span></td><td key=5></td></tr><tr key=0-0-38><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> wpWide</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">工件宽</span></td><td key=5></td></tr><tr key=0-1><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> camSchedule</span></td><td key=1><span>object</span></td><td key=2>必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">CAM工序</span></td><td key=5></td></tr><tr key=0-1-0><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> camScheduleId</span></td><td key=1><span>string</span></td><td key=2>必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">CAM工序ID</span></td><td key=5></td></tr><tr key=0-1-1><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> camStepName</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">CAM工步</span></td><td key=5></td></tr><tr key=0-1-2><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> gap</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">GAP</span></td><td key=5></td></tr><tr key=0-1-3><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> materialId</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">材质ID</span></td><td key=5></td></tr><tr key=0-1-4><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> materialName</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">材质名称</span></td><td key=5></td></tr><tr key=0-1-5><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> materialType</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">材质类型</span></td><td key=5></td></tr><tr key=0-1-6><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> materialTypeId</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">材质类型ID</span></td><td key=5></td></tr><tr key=0-1-7><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> moldId</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">制品ID</span></td><td key=5></td></tr><tr key=0-1-8><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> moldNo</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">制品号</span></td><td key=5></td></tr><tr key=0-1-9><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> partId</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">工件ID</span></td><td key=5></td></tr><tr key=0-1-10><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> partNo</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">件号</span></td><td key=5></td></tr><tr key=0-1-11><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> phaseId</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">加工面ID</span></td><td key=5></td></tr><tr key=0-1-12><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> phaseName</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">加工面</span></td><td key=5></td></tr><tr key=0-1-13><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> processId</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">制程ID</span></td><td key=5></td></tr><tr key=0-1-14><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> processName</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">制程</span></td><td key=5></td></tr><tr key=0-1-15><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> processObject</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">加工对象</span></td><td key=5></td></tr><tr key=0-1-16><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> workOrderId</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">工单ID</span></td><td key=5></td></tr><tr key=0-1-17><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> workOrderNo</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">工令单</span></td><td key=5></td></tr>
+               </tbody>
+              </table>
+<h3 id="-6">返回数据</h3>
+<table>
+  <thead class="ant-table-thead">
+    <tr>
+      <th key=name>名称</th><th key=type>类型</th><th key=required>是否必须</th><th key=default>默认值</th><th key=desc>备注</th><th key=sub>其他信息</th>
+    </tr>
+  </thead><tbody className="ant-table-tbody"><tr key=0-0><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> code</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">1或者200是成功  其他失败</span></td><td key=5></td></tr><tr key=0-1><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> message</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">返回的信息</span></td><td key=5></td></tr><tr key=0-2><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> data</span></td><td key=1><span>object</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">返回数据</span></td><td key=5></td></tr><tr key=0-2-0><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> R</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">粗工程式groupId</span></td><td key=5></td></tr><tr key=0-2-1><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> S</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">中工程式groupId</span></td><td key=5></td></tr><tr key=0-2-2><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> F</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">精工程式groupId</span></td><td key=5></td></tr>
+               </tbody>
+              </table>
+<h2 id="u83b7u53d6camu4efbu52a1u5217u88680a3ca20id3du83b7u53d6camu4efbu52a1u5217u88683e203ca3e">获取CAM任务列表
+<a id=获取CAM任务列表> </a></h2>
+<p></p>
+<h3 id="-7">基本信息</h3>
+<p><strong>Path：</strong> /front/cam/api/v1/getCamTaskList.do</p>
+<p><strong>Method：</strong> POST</p>
+<p><strong>接口描述：</strong></p>
+<p>获取 当前登录用户的 <strong>CAM任务</strong> 列表</p>
+<h3 id="-8">请求参数</h3>
+<p><strong>Headers</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>参数值</th>
+<th>是否必须</th>
+<th>示例</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Content-Type</td>
+<td>application/json</td>
+<td>是</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Body</strong></p>
+<table>
+  <thead class="ant-table-thead">
+    <tr>
+      <th key=name>名称</th><th key=type>类型</th><th key=required>是否必须</th><th key=default>默认值</th><th key=desc>备注</th><th key=sub>其他信息</th>
+    </tr>
+  </thead><tbody className="ant-table-tbody"><tr key=0-0><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> sectionTypeName</span></td><td key=1><span>string</span></td><td key=2>必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">工段类型</span></td><td key=5></td></tr><tr key=0-1><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> section</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">工段</span></td><td key=5></td></tr><tr key=0-2><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> moldNo</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">制品号</span></td><td key=5></td></tr><tr key=0-3><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> partNo</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">件号</span></td><td key=5></td></tr><tr key=0-4><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> processObject</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">加工对象</span></td><td key=5></td></tr><tr key=0-5><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> camType</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">Cam 任务类型</span></td><td key=5></td></tr>
+               </tbody>
+              </table>
+<h3 id="-9">返回数据</h3>
+<table>
+  <thead class="ant-table-thead">
+    <tr>
+      <th key=name>名称</th><th key=type>类型</th><th key=required>是否必须</th><th key=default>默认值</th><th key=desc>备注</th><th key=sub>其他信息</th>
+    </tr>
+  </thead><tbody className="ant-table-tbody"><tr key=0-0><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> code</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">1或200为成功</span></td><td key=5></td></tr><tr key=0-1><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> message</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">返回的消息</span></td><td key=5></td></tr><tr key=0-2><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> data</span></td><td key=1><span>object []</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">返回数据</span></td><td key=5><p key=3><span style="font-weight: '700'">item 类型: </span><span>object</span></p></td></tr><tr key=0-2-0><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> camScheduleId</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">Sch Id</span></td><td key=5></td></tr><tr key=0-2-1><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> tenantId</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">租户 Id</span></td><td key=5></td></tr><tr key=0-2-2><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> camStatus</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">任务状态</span></td><td key=5></td></tr><tr key=0-2-3><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> moldId</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">制品Id</span></td><td key=5></td></tr><tr key=0-2-4><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> moldNo</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">制品号</span></td><td key=5></td></tr><tr key=0-2-5><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> moldNo2</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">客户制品号</span></td><td key=5></td></tr><tr key=0-2-6><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> partId</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">零件Id</span></td><td key=5></td></tr><tr key=0-2-7><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> partNo2</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">客户件号</span></td><td key=5></td></tr><tr key=0-2-8><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> partNo</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">零件号</span></td><td key=5></td></tr><tr key=0-2-9><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> processObject</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">对象</span></td><td key=5></td></tr><tr key=0-2-10><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> partStatus</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">工件状态  
+100未发行
+200发行</span></td><td key=5></td></tr><tr key=0-2-11><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> processId</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">工序Id</span></td><td key=5></td></tr><tr key=0-2-12><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> workOrderId</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">工单Id</span></td><td key=5></td></tr><tr key=0-2-13><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> sectionId</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">工段Id</span></td><td key=5></td></tr><tr key=0-2-14><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> phaseId</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">加工面Id</span></td><td key=5></td></tr><tr key=0-2-15><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> camUserId</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">CAM处理人员ID</span></td><td key=5></td></tr><tr key=0-2-16><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> mainId</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-17><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> sortOrder</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-18><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> validFlag</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-19><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> createUserId</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-20><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> createTime</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-21><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> updateUserId</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-22><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> updateTime</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-23><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> workOrderNo</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">工单</span></td><td key=5></td></tr><tr key=0-2-24><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> processName</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">制程</span></td><td key=5></td></tr><tr key=0-2-25><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> phaseName</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">加工面</span></td><td key=5></td></tr><tr key=0-2-26><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> uploadTime</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">上传时间</span></td><td key=5></td></tr><tr key=0-2-27><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> materialId</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">材质Id</span></td><td key=5></td></tr><tr key=0-2-28><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> materialName</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">材质</span></td><td key=5></td></tr><tr key=0-2-29><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> materialTypeId</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">材质类型Id</span></td><td key=5></td></tr><tr key=0-2-30><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> materialType</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">材质类型</span></td><td key=5></td></tr><tr key=0-2-31><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> priorityLevelId</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">优先级ID</span></td><td key=5></td></tr><tr key=0-2-32><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> terminalCustomerId</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">客户ID</span></td><td key=5></td></tr><tr key=0-2-33><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> terminalCustomerName</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">客户名称</span></td><td key=5></td></tr><tr key=0-2-34><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> camPlanId</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-35><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> asmFlag</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-36><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> camSectionId</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-37><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> camProcessId</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-38><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> planStartTime</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-39><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> planEndTime</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-40><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> needArrange</span></td><td key=1><span>boolean</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-41><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> resubmitAble</span></td><td key=1><span>boolean</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-42><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> section</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">工段</span></td><td key=5></td></tr><tr key=0-2-43><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> sectionTypeName</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">工段类型</span></td><td key=5></td></tr><tr key=0-2-44><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> taskStatus</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">任务状态</span></td><td key=5></td></tr><tr key=0-2-45><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> gapHrc</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-46><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> dwgNo</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">零件图号</span></td><td key=5></td></tr><tr key=0-2-47><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> camMainId</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-48><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> taskId</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">任务Id</span></td><td key=5></td></tr><tr key=0-2-49><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> yearQuarter</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">年份</span></td><td key=5></td></tr><tr key=0-2-50><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> quadrant</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">获取基准角,等于3或4 </span></td><td key=5></td></tr><tr key=0-2-51><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> fileIdBomPart</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">文件Id</span></td><td key=5></td></tr><tr key=0-2-52><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> fileIdCamUploadList</span></td><td key=1><span>object []</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">上传清单</span></td><td key=5><p key=3><span style="font-weight: '700'">item 类型: </span><span>object</span></p></td></tr><tr key=0-2-52-0><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> stepName</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">工步</span></td><td key=5></td></tr><tr key=0-2-52-1><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> fileIdCamUpload</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">文件Id</span></td><td key=5></td></tr><tr key=0-2-53><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> fileName</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">文件名称</span></td><td key=5></td></tr><tr key=0-2-54><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> filePath</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">文件路径</span></td><td key=5></td></tr><tr key=0-2-55><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> file</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-56><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> eleGap</span></td><td key=1><span>object []</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">电极gap</span></td><td key=5><p key=3><span style="font-weight: '700'">item 类型: </span><span>object</span></p></td></tr><tr key=0-2-56-0><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> sparkType</span></td><td key=1><span>string</span></td><td key=2>必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">间隙类型</span></td><td key=5></td></tr><tr key=0-2-56-1><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> gap</span></td><td key=1><span>number</span></td><td key=2>必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">间隙</span></td><td key=5></td></tr><tr key=0-2-56-2><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> count</span></td><td key=1><span>number</span></td><td key=2>必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">数量</span></td><td key=5></td></tr><tr key=0-2-57><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> quantity</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">数量</span></td><td key=5></td></tr>
+               </tbody>
+              </table>
+<h2 id="u83b7u53d6u7a0bu5f0fu7c7bu578b0a3ca20id3du83b7u53d6u7a0bu5f0fu7c7bu578b3e203ca3e">获取程式类型
+<a id=获取程式类型> </a></h2>
+<p></p>
+<h3 id="-10">基本信息</h3>
+<p><strong>Path：</strong> /front/cam/api/v1/getCncTemplate.do</p>
+<p><strong>Method：</strong> POST</p>
+<p><strong>接口描述：</strong></p>
+<p>根据&nbsp;<strong>模号 件号 对象</strong> ，获取匹配的&nbsp;<strong>程式类型</strong> 列表</p>
+<h3 id="-11">请求参数</h3>
+<p><strong>Headers</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>参数值</th>
+<th>是否必须</th>
+<th>示例</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Content-Type</td>
+<td>application/json</td>
+<td>是</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Body</strong></p>
+<table>
+  <thead class="ant-table-thead">
+    <tr>
+      <th key=name>名称</th><th key=type>类型</th><th key=required>是否必须</th><th key=default>默认值</th><th key=desc>备注</th><th key=sub>其他信息</th>
+    </tr>
+  </thead><tbody className="ant-table-tbody"><tr key=0-0><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> moldNo</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">制品号</span></td><td key=5></td></tr><tr key=0-1><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> partNo</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">件号</span></td><td key=5></td></tr><tr key=0-2><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> processObject</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">加工对象</span></td><td key=5></td></tr>
+               </tbody>
+              </table>
+<h3 id="-12">返回数据</h3>
+<table>
+  <thead class="ant-table-thead">
+    <tr>
+      <th key=name>名称</th><th key=type>类型</th><th key=required>是否必须</th><th key=default>默认值</th><th key=desc>备注</th><th key=sub>其他信息</th>
+    </tr>
+  </thead><tbody className="ant-table-tbody"><tr key=0-0><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> code</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">1或200 成功 其他失败</span></td><td key=5></td></tr><tr key=0-1><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> message</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">返回的消息</span></td><td key=5></td></tr><tr key=0-2><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> data</span></td><td key=1><span>object []</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">返回数据</span></td><td key=5><p key=3><span style="font-weight: '700'">item 类型: </span><span>object</span></p></td></tr><tr key=0-2-0><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> jpg</span></td><td key=1><span>string</span></td><td key=2>必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">图片</span></td><td key=5></td></tr><tr key=0-2-1><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> exePostName</span></td><td key=1><span>string</span></td><td key=2>必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">CAM软件中对应的POST名字</span></td><td key=5></td></tr><tr key=0-2-2><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> prg</span></td><td key=1><span>string</span></td><td key=2>必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">模板文件名字</span></td><td key=5></td></tr><tr key=0-2-3><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> fileSuffix</span></td><td key=1><span>string</span></td><td key=2>必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">文件后缀名，如V22为.V2</span></td><td key=5></td></tr><tr key=0-2-4><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> materialCode</span></td><td key=1><span>string</span></td><td key=2>必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">材质编码（加工材质）</span></td><td key=5></td></tr><tr key=0-2-5><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> camPostId</span></td><td key=1><span>number</span></td><td key=2>必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">CAM POST ID</span></td><td key=5></td></tr><tr key=0-2-6><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> cncTemplateId</span></td><td key=1><span>number</span></td><td key=2>必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">模板ID</span></td><td key=5></td></tr><tr key=0-2-7><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> partmat</span></td><td key=1><span>string</span></td><td key=2>必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">加工材质备注</span></td><td key=5></td></tr><tr key=0-2-8><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> cncProgramTypeName</span></td><td key=1><span>string</span></td><td key=2>必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">程式类型</span></td><td key=5></td></tr><tr key=0-2-9><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> templateName</span></td><td key=1><span>string</span></td><td key=2>必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">模板名称</span></td><td key=5></td></tr><tr key=0-2-10><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> cncProgramTypeTemplate</span></td><td key=1><span>string</span></td><td key=2>必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">主程式模板</span></td><td key=5></td></tr><tr key=0-2-11><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> gap</span></td><td key=1><span>number</span></td><td key=2>必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">gap</span></td><td key=5></td></tr><tr key=0-2-12><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> tCamProgramTypeId</span></td><td key=1><span>number</span></td><td key=2>必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">加工程式类型ID</span></td><td key=5></td></tr><tr key=0-2-13><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> sectionType</span></td><td key=1><span>string</span></td><td key=2>必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">工段类型</span></td><td key=5></td></tr>
+               </tbody>
+              </table>
+<h2 id="u83b7u53d6u9644u4ef6u6e05u53550a3ca20id3du83b7u53d6u9644u4ef6u6e05u53553e203ca3e">获取附件清单
+<a id=获取附件清单> </a></h2>
+<p></p>
+<h3 id="-13">基本信息</h3>
+<p><strong>Path：</strong> /front/bom/api/v1/getPartFiles.do</p>
+<p><strong>Method：</strong> POST</p>
+<p><strong>接口描述：</strong></p>
+<h4>获取指定零件的附件清单</h4>
+<h6>请求头</h6>
+<p>Accept-Language: zh-cn,zh;q=0.5<br>
+Accept-Encoding: gzip,deflate<br>
+Accept-Charset: gb2312,utf-8;q=0.7,*;q=0.7<br>
+Keep-Alive: 30000<br>
+Pragma: no-cache<br>
+Content-Type: application/json;charset=UTF-8<br>
+Cookie: JSESSIONID=ce948f0b-efac-41fe-9584-c0b1659d6ce6; Path=/; HttpOnly<br>
+User-Agent: Cax/5.0 (Windows NT 6.1; WOW64) Application CAX/NX<br>
+Host: test1.moldyun.com<br>
+Content-Length: 30</p>
+<h6>请求参数</h6>
+<pre><code data-language="json" class="lang-json">{
+	"partId": "1075893255007200"
+}
+</code></pre>
+<h6>响应头</h6>
+<p>HTTP/1.1 200<br>
+Server: nginx/1.13.12<br>
+Date: Mon, 29 Jun 2020 03:59:38 GMT<br>
+Content-Type: application/json;charset=UTF-8<br>
+Transfer-Encoding: chunked<br>
+Connection: keep-alive<br>
+Access-Control-Allow-Origin: *<br>
+Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS<br>
+Access-Control-Max-Age: 3600<br>
+Access-Control-Allow-Headers: x-requested-with, Authorization, Content-Type</p>
+<h6>响应体</h6>
+<pre><code data-language="json" class="lang-json">{
+	"code": 1,
+	"message": "操作成功",
+	"data": {
+		"partId": 1075893255007200,
+		"moldNo": "CS2020",
+		"partNo": "C006",
+		"processObject": "WORKPIECE",
+		"quantity": 50,
+		"materialName": "钢件",
+		"materialCode": "ST",
+		"catalogSize": "100*100*100",
+		"version": "A",
+		"bomPartPrtList": [],
+		"bomPartImgList": [],
+		"bomPartStpList": [{
+				"fileId": 1087561011892405,
+				"tenantId": 86,
+				"factoryId": 860086,
+				"moldId": 1010804945740032,
+				"workOrderId": 0,
+				"fileName": "xt1.x_t",
+				"fileExt": "x_t",
+				"fileSize": 5844568,
+				"fileVersion": 1,
+				"ftpUrl": "/CAD/2020/CS2020/-/A/PART/xt1.x_t",
+				"fileSecurityLevel": 2,
+				"lastVersion": 1,
+				"fileStatus": 1,
+				"fileDeposit": 2,
+				"originalId": 0,
+				"partId": 1075893255007200,
+				"sortOrder": 0.0000,
+				"validFlag": 1,
+				"createTime": "2020-06-28 14:21:38",
+				"createUserId": 690336931088398,
+				"updateTime": "2020-06-28 14:21:38",
+				"updateUserId": 690336931088398,
+				"createUserName": "tangxiaotang1"
+			}
+		],
+		"bomPartJtList": [],
+		"bomPartCgmList": [],
+		"bomPartDwgList": [],
+		"bomPartDxfList": [],
+		"bomPartAttachmentList": []
+	}
+}
+</code></pre>
+<h3 id="-14">请求参数</h3>
+<p><strong>Headers</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>参数值</th>
+<th>是否必须</th>
+<th>示例</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Content-Type</td>
+<td>application/json</td>
+<td>是</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Body</strong></p>
+<table>
+  <thead class="ant-table-thead">
+    <tr>
+      <th key=name>名称</th><th key=type>类型</th><th key=required>是否必须</th><th key=default>默认值</th><th key=desc>备注</th><th key=sub>其他信息</th>
+    </tr>
+  </thead><tbody className="ant-table-tbody"><tr key=0-0><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> partId</span></td><td key=1><span>string</span></td><td key=2>必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">待查询零件的partId</span></td><td key=5></td></tr>
+               </tbody>
+              </table>
+<h3 id="-15">返回数据</h3>
+<table>
+  <thead class="ant-table-thead">
+    <tr>
+      <th key=name>名称</th><th key=type>类型</th><th key=required>是否必须</th><th key=default>默认值</th><th key=desc>备注</th><th key=sub>其他信息</th>
+    </tr>
+  </thead><tbody className="ant-table-tbody"><tr key=0-0><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> code</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">1成功 其他失败</span></td><td key=5></td></tr><tr key=0-1><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> message</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">错误消息</span></td><td key=5></td></tr><tr key=0-2><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> data</span></td><td key=1><span>object</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">返回数据</span></td><td key=5></td></tr><tr key=0-2-0><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> partId</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">零件的partId</span></td><td key=5></td></tr><tr key=0-2-1><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> moldNo</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">零件的制品号</span></td><td key=5></td></tr><tr key=0-2-2><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> partNo</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">零件的件号</span></td><td key=5></td></tr><tr key=0-2-3><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> processObject</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">零件的对象</span></td><td key=5></td></tr><tr key=0-2-4><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> quantity</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">数量</span></td><td key=5></td></tr><tr key=0-2-5><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> materialName</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">材质名称</span></td><td key=5></td></tr><tr key=0-2-6><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> materialCode</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">材质编号</span></td><td key=5></td></tr><tr key=0-2-7><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> catalogSize</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">备料尺寸</span></td><td key=5></td></tr><tr key=0-2-8><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> version</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">版本</span></td><td key=5></td></tr><tr key=0-2-9><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> bomPartPrtList</span></td><td key=1><span>string []</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">prt文件列表</span></td><td key=5><p key=3><span style="font-weight: '700'">item 类型: </span><span>string</span></p></td></tr><tr key=array-43><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> </span></td><td key=1><span></span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-10><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> bomPartImgList</span></td><td key=1><span>string []</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">图片列表</span></td><td key=5><p key=3><span style="font-weight: '700'">item 类型: </span><span>string</span></p></td></tr><tr key=array-44><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> </span></td><td key=1><span></span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-11><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> bomPartStpList</span></td><td key=1><span>object []</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">其他3D文件列表（x_t | igs | stp）</span></td><td key=5><p key=3><span style="font-weight: '700'">item 类型: </span><span>object</span></p></td></tr><tr key=0-2-11-0><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> fileId</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">文件的fileId</span></td><td key=5></td></tr><tr key=0-2-11-1><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> tenantId</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">租户Id</span></td><td key=5></td></tr><tr key=0-2-11-2><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> factoryId</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">工厂Id</span></td><td key=5></td></tr><tr key=0-2-11-3><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> moldId</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">制品Id</span></td><td key=5></td></tr><tr key=0-2-11-4><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> workOrderId</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">工单Id</span></td><td key=5></td></tr><tr key=0-2-11-5><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> fileName</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">文件名</span></td><td key=5></td></tr><tr key=0-2-11-6><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> fileExt</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">文件后缀</span></td><td key=5></td></tr><tr key=0-2-11-7><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> fileSize</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">文件大小</span></td><td key=5></td></tr><tr key=0-2-11-8><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> fileVersion</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">文件版本</span></td><td key=5></td></tr><tr key=0-2-11-9><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> ftpUrl</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">文件路径</span></td><td key=5></td></tr><tr key=0-2-11-10><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> fileSecurityLevel</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-11-11><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> lastVersion</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-11-12><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> fileStatus</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">文件状态</span></td><td key=5></td></tr><tr key=0-2-11-13><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> fileDeposit</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-11-14><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> originalId</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-11-15><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> partId</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">partId</span></td><td key=5></td></tr><tr key=0-2-11-16><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> sortOrder</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-11-17><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> validFlag</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">是否可用</span></td><td key=5></td></tr><tr key=0-2-11-18><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> createTime</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-11-19><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> createUserId</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-11-20><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> updateTime</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-11-21><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> updateUserId</span></td><td key=1><span>number</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-11-22><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> createUserName</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-12><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> bomPartJtList</span></td><td key=1><span>string []</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">Jt文件列表</span></td><td key=5><p key=3><span style="font-weight: '700'">item 类型: </span><span>string</span></p></td></tr><tr key=array-45><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> </span></td><td key=1><span></span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-13><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> bomPartCgmList</span></td><td key=1><span>string []</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">Cgm文件列表</span></td><td key=5><p key=3><span style="font-weight: '700'">item 类型: </span><span>string</span></p></td></tr><tr key=array-46><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> </span></td><td key=1><span></span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-14><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> bomPartDwgList</span></td><td key=1><span>string []</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">Dwg文件列表</span></td><td key=5><p key=3><span style="font-weight: '700'">item 类型: </span><span>string</span></p></td></tr><tr key=array-47><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> </span></td><td key=1><span></span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-15><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> bomPartDxfList</span></td><td key=1><span>string []</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">Dxf文件列表</span></td><td key=5><p key=3><span style="font-weight: '700'">item 类型: </span><span>string</span></p></td></tr><tr key=array-48><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> </span></td><td key=1><span></span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-16><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> bomPartAttachmentList</span></td><td key=1><span>string []</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">附件列表</span></td><td key=5><p key=3><span style="font-weight: '700'">item 类型: </span><span>string</span></p></td></tr><tr key=array-49><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> </span></td><td key=1><span></span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr>
+               </tbody>
+              </table>
+<h1 id="gateway">Gateway</h1>
+<p></p>
+<h2 id="u4e0bu8f7du6587u4ef6u63a5u53e30a3ca20id3du4e0bu8f7du6587u4ef6u63a5u53e33e203ca3e">下载文件接口
+<a id=下载文件接口> </a></h2>
+<p></p>
+<h3 id="-16">基本信息</h3>
+<p><strong>Path：</strong> /gateway/file/getfile.do</p>
+<p><strong>Method：</strong> GET</p>
+<p><strong>接口描述：</strong></p>
+<p>根据文件id，获取文件的 <strong>二进制流</strong></p>
+<h3 id="-17">请求参数</h3>
+<p><strong>Query</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>示例</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fileId</td>
+<td>是</td>
+<td>1083306586725897</td>
+<td>文件id</td>
+</tr>
+</tbody>
+</table>
+<h3 id="-18">返回数据</h3>
+<table>
+  <thead class="ant-table-thead">
+    <tr>
+      <th key=name>名称</th><th key=type>类型</th><th key=required>是否必须</th><th key=default>默认值</th><th key=desc>备注</th><th key=sub>其他信息</th>
+    </tr>
+  </thead><tbody className="ant-table-tbody">
+               </tbody>
+              </table>
+<h2 id="u6821u9a8cu79dfu6237id0a3ca20id3du6821u9a8cu79dfu6237id3e203ca3e">校验租户id
+<a id=校验租户id> </a></h2>
+<p></p>
+<h3 id="-19">基本信息</h3>
+<p><strong>Path：</strong> /gateway/connect/web</p>
+<p><strong>Method：</strong> POST</p>
+<p><strong>接口描述：</strong></p>
+<p>M4页面前端用来判断网关是否有启动</p>
+<h3 id="-20">请求参数</h3>
+<p><strong>Headers</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>参数值</th>
+<th>是否必须</th>
+<th>示例</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Content-Type</td>
+<td>application/json</td>
+<td>是</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Body</strong></p>
+<table>
+  <thead class="ant-table-thead">
+    <tr>
+      <th key=name>名称</th><th key=type>类型</th><th key=required>是否必须</th><th key=default>默认值</th><th key=desc>备注</th><th key=sub>其他信息</th>
+    </tr>
+  </thead><tbody className="ant-table-tbody"><tr key=0-0><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> tenantId</span></td><td key=1><span>string</span></td><td key=2>必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">登录的用户信息中包含租户Id</span></td><td key=5><p key=5><span style="font-weight: '700'">mock: </span><span>301</span></p></td></tr>
+               </tbody>
+              </table>
+<h3 id="-21">返回数据</h3>
+<table>
+  <thead class="ant-table-thead">
+    <tr>
+      <th key=name>名称</th><th key=type>类型</th><th key=required>是否必须</th><th key=default>默认值</th><th key=desc>备注</th><th key=sub>其他信息</th>
+    </tr>
+  </thead><tbody className="ant-table-tbody"><tr key=0-0><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> code</span></td><td key=1><span>number</span></td><td key=2>必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">1：成功， 20000：失败</span></td><td key=5></td></tr><tr key=0-1><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> message</span></td><td key=1><span>string</span></td><td key=2>必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">具体提示</span></td><td key=5></td></tr><tr key=0-2><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> data</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">serverAppUuid</span></td><td key=5></td></tr>
+               </tbody>
+              </table>
+<h2 id="u901au7528u6587u4ef6u4e0au4f200a3ca20id3du901au7528u6587u4ef6u4e0au4f203e203ca3e">通用文件上传
+<a id=通用文件上传> </a></h2>
+<p></p>
+<h3 id="-22">基本信息</h3>
+<p><strong>Path：</strong> /gateway/file/upload/common</p>
+<p><strong>Method：</strong> POST</p>
+<p><strong>接口描述：</strong></p>
+<p><strong>params参数详解</strong></p>
+<hr>
+<p><strong>uploadFileType</strong><br>
+1000 CNC<br>
+1001 EDM<br>
+1002 CMM<br>
+1003 CAPP（CAPP备注）<br>
+1004 WE<br>
+1005 L<br>
+1006 CMM校正</p>
+<hr>
+<p><strong>uploadFileType = 1000</strong></p>
+<table>
+<thead>
+<tr>
+<th>fileType</th>
+<th>params</th>
+<th>是否保存zip</th>
+<th>是否解压</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PRT</td>
+<td><code data-backticks="1">{</code><br data-tomark-pass=""><code data-backticks="1">"uploadFileType":"1000",</code><br data-tomark-pass=""><code data-backticks="1">"fileType":"PRT",</code><br data-tomark-pass=""><code data-backticks="1">"camGroupId":"1083307459142268",</code><br data-tomark-pass=""><code data-backticks="1">"camScheduleId":"1075893255007230",</code><br data-tomark-pass=""><code data-backticks="1">"camStepId":"1",</code><br data-tomark-pass=""><code data-backticks="1">"programTypeId":"683036359070021" }</code></td>
+<td>是</td>
+<td>否</td>
+<td>文件名.zip</td>
+</tr>
+<tr>
+<td>QC</td>
+<td><code data-backticks="1">{</code><br data-tomark-pass=""><code data-backticks="1">"uploadFileType":"1000",</code><br data-tomark-pass=""><code data-backticks="1">"fileType":"QC",</code><br data-tomark-pass=""><code data-backticks="1">"camGroupId":"1083307459142268",</code><br data-tomark-pass=""><code data-backticks="1">"camScheduleId":"1075893255007230",</code><br data-tomark-pass=""><code data-backticks="1">"camStepId":"1",</code><br data-tomark-pass=""><code data-backticks="1">"programTypeId":"683036359070021"</code><br data-tomark-pass=""><code data-backticks="1">}</code></td>
+<td>是</td>
+<td>否</td>
+<td>文件名_STL.zip</td>
+</tr>
+<tr>
+<td>NC</td>
+<td><code data-backticks="1">{</code><br data-tomark-pass=""><code data-backticks="1">"uploadFileType":"1000",</code><br data-tomark-pass=""><code data-backticks="1">"fileType":"NC",</code><br data-tomark-pass=""><code data-backticks="1">"camGroupId":"1083307459142268",</code><br data-tomark-pass=""><code data-backticks="1">"camScheduleId":"1075893255007230",</code><br data-tomark-pass=""><code data-backticks="1">"camStepId":"1",</code><br data-tomark-pass=""><code data-backticks="1">"programTypeId":"683036359070021",</code><br data-tomark-pass=""><code data-backticks="1">"gap":"F"</code><br data-tomark-pass=""><code data-backticks="1">}</code></td>
+<td>是</td>
+<td>是</td>
+<td>文件名_NC.zip<br data-tomark-pass="">只保存zip文件，但是需要获取压缩包的<br data-tomark-pass="">文件列表，因为需要获取所有的程式名称</td>
+</tr>
+<tr>
+<td>SETUP</td>
+<td><code data-backticks="1">{</code><br data-tomark-pass=""><code data-backticks="1">"uploadFileType":"1000",</code><br data-tomark-pass=""><code data-backticks="1">"fileType":"SETUP",</code><br data-tomark-pass=""><code data-backticks="1">"camGroupId":"1083307459142268",</code><br data-tomark-pass=""><code data-backticks="1">"camScheduleId":"1075893255007230",</code><br data-tomark-pass=""><code data-backticks="1">"camStepId":"1",</code><br data-tomark-pass=""><code data-backticks="1">"programTypeId":"683036359070021" }</code></td>
+<td>否</td>
+<td>是</td>
+<td>文件名_Setup.zip</td>
+</tr>
+<tr>
+<td>SHOPDOC</td>
+<td><code data-backticks="1">{</code><br data-tomark-pass=""><code data-backticks="1">"uploadFileType":"1000",</code><br data-tomark-pass=""><code data-backticks="1">"fileType":"SHOPDOC",</code><br data-tomark-pass=""><code data-backticks="1">"camGroupId":"1083307459142268",</code><br data-tomark-pass=""><code data-backticks="1">"camScheduleId":"1075893255007230",</code><br data-tomark-pass=""><code data-backticks="1">"camStepId":"1",</code><br data-tomark-pass=""><code data-backticks="1">"programTypeId":"683036359070021" }</code></td>
+<td>否</td>
+<td>是</td>
+<td>文件名_Toolpath.zip</td>
+</tr>
+<tr>
+<td>PARTVIEW</td>
+<td><code data-backticks="1">{</code><br data-tomark-pass=""><code data-backticks="1">"uploadFileType":"1000",</code><br data-tomark-pass=""><code data-backticks="1">"fileType":"PARTVIEW",</code><br data-tomark-pass=""><code data-backticks="1">"camGroupId":"1083307459142268",</code><br data-tomark-pass=""><code data-backticks="1">"camScheduleId":"1075893255007230",</code><br data-tomark-pass=""><code data-backticks="1">"camStepId":"1",</code><br data-tomark-pass=""><code data-backticks="1">"programTypeId":"683036359070021" }</code></td>
+<td>否</td>
+<td>是</td>
+<td>文件名_3D.zip</td>
+</tr>
+</tbody>
+</table>
+<p>programTypeId 程式类型ID，通过【<a href="http://192.168.1.184:3000/project/32/interface/api/133">获取程式类型</a>】接口获取<br>
+camScheduleId CAM任务ID，通过【<a href="http://192.168.1.184:3000/project/32/interface/api/19">获取当前用户的CAM任务列表</a>】接口获得的CAM任务ID<br>
+camGroupId CAM任务上传的程式ID，通过【<a href="http://192.168.1.184:3000/project/32/interface/api/169">CAM任务参数上传</a>】接口上传NC程式数据后获取<br>
+camStepId CAM工步ID，通过【】接口获取，如果CAM任务的加工面是A面，则需要该字段来确定加工面</p>
+<hr>
+<h3 id="-23">请求参数</h3>
+<p><strong>Headers</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>参数值</th>
+<th>是否必须</th>
+<th>示例</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Content-Type</td>
+<td>multipart/form-data</td>
+<td>是</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Cookie</td>
+<td>JSESSIONID=2c1e94b9-7219-40b1-a43c-494b3578e1b2</td>
+<td>是</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Body</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>参数类型</th>
+<th>是否必须</th>
+<th>示例</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>files</td>
+<td>file</td>
+<td>是</td>
+<td></td>
+<td>上传的文件列表</td>
+</tr>
+<tr>
+<td>params</td>
+<td>text</td>
+<td>是</td>
+<td>{&quot;camScheduleId&quot;:&quot;1075893255007230&quot;,&quot;programTypeId&quot;:&quot;683036359070021&quot;,&quot;uploadFileType&quot;:&quot;1000&quot;,&quot;fileType&quot;:&quot;NC&quot;,&quot;camGroupId&quot;:&quot;1083307459142268&quot;,&quot;gap&quot;:&quot;F&quot;}</td>
+<td>上传的参数，JSON格式的字符串</td>
+</tr>
+<tr>
+<td>JSESSIONID</td>
+<td>text</td>
+<td>是</td>
+<td>2c1e94b9-7219-40b1-a43c-494b3578e1b2</td>
+<td>cookie</td>
+</tr>
+</tbody>
+</table>
+<h3 id="-24">返回数据</h3>
+<table>
+  <thead class="ant-table-thead">
+    <tr>
+      <th key=name>名称</th><th key=type>类型</th><th key=required>是否必须</th><th key=default>默认值</th><th key=desc>备注</th><th key=sub>其他信息</th>
+    </tr>
+  </thead><tbody className="ant-table-tbody"><tr key=0-0><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> code</span></td><td key=1><span>number</span></td><td key=2>必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">1：成功
+200：成功
+其他：不成功</span></td><td key=5></td></tr><tr key=0-1><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> message</span></td><td key=1><span>string</span></td><td key=2>必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">成功或不成功的详细描述</span></td><td key=5></td></tr><tr key=0-2><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> data</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">如果不成功，包含一些更具体的业务数据或说明</span></td><td key=5></td></tr>
+               </tbody>
+              </table>
+            
+          </div>
+        </div>
+      </body>
+      </html>
+      
